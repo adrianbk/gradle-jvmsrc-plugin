@@ -1,4 +1,4 @@
-package com.ak.jvmsrc.plugin
+package org.ajar.gradle.jvmsrc.plugin
 
 class JvmSrcExtension {
     public static final String DEFAULT_PACKAGE = "com.nopackage"

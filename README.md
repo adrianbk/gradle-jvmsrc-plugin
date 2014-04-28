@@ -32,7 +32,7 @@ buildscript {
         maven { url 'http://dl.bintray.com/adrianbkelly/maven'}
     }
     dependencies {
-        classpath 'com.ak:gradle-jvm-src-plugin:0.1'
+        classpath 'org.ajar.gradle:gradle-jvm-src-plugin:0.1'
     }
 }
 

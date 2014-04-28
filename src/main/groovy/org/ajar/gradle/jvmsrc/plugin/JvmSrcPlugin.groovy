@@ -1,6 +1,6 @@
-package com.ak.jvmsrc.plugin
+package org.ajar.gradle.jvmsrc.plugin
 
-import com.ak.jvmsrc.tasks.CreateJvmSourceDirs
+import org.ajar.gradle.jvmsrc.tasks.CreateJvmSourceDirs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 

@@ -15,26 +15,40 @@ dependencies {
     compile gradleApi()
 }
 
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+}
 
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            groupId 'com.ak'
             artifactId 'gradle-jvm-src-plugin'
             from components.java
+
+            artifact sourceJar {
+                classifier "sources"
+            }
         }
     }
 
     repositories {
         maven {
             name 'bintray'
-
-            url "https://api.bintray.com/maven/adrianbkelly/maven/gradle-jvm-src-plugin"
+            url 'https://api.bintray.com/maven/adrianbkelly/maven/gradle-jvm-src-plugin'
             credentials {
                 username = 'adrianbkelly'
                 password = project.hasProperty('bintray_key') ? project.getProperty('bintray_key') : ''
             }
         }
+
+//        maven {
+//            name 'localArtifactory'
+//            credentials {
+//                username = 'admin'
+//                password = 'password'
+//            }
+//            url 'http://localhost:8081/artifactory/libs-release-local'
+//        }
     }
 }
 

@@ -1,4 +1,4 @@
-package com.ak.jvmsrc.tasks
+package org.ajar.gradle.jvmsrc.tasks
 
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
