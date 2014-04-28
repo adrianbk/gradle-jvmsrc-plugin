@@ -1,4 +1,4 @@
-package com.ak.gradle.jvmsrc.tasks
+package com.ak.jvmsrc.tasks
 
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
@@ -6,6 +6,7 @@ import org.gradle.api.tasks.TaskAction
 class CreateJvmSourceDirs extends DefaultTask {
 
     String description = 'Creates a JVM based project structure based on the plugins applied to the project.'
+    String group = "build setup"
 
     @TaskAction
     def createJVMProjectSource() {

@@ -1,8 +1,10 @@
 apply plugin: 'groovy'
+apply plugin: 'maven-publish'
+
 
 repositories {
     mavenCentral()
-//    maven { url 'http://localhost:8081/artifactory/repo' }
+    maven { url 'http://localhost:8081/artifactory/repo' }
 
 }
 
@@ -11,8 +13,25 @@ dependencies {
     testCompile "org.spockframework:spock-core:0.7-groovy-1.8"
     compile localGroovy()
     compile gradleApi()
+}
 
-    testCompile 'junit:junit:4.11'
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            name 'remoteReleaseRepository'
+            credentials {
+                username = 'admin'
+                password = 'password'
+            }
+            url 'http://localhost:8081/artifactory/libs-snapshot-local'
+        }
+    }
 }
 
 task wrapper(type: Wrapper) {

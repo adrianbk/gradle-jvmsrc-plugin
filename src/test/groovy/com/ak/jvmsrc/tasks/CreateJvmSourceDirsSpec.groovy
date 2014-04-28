@@ -1,9 +1,10 @@
-package com.ak.gradle.jvmsrc.tasks
+package com.ak.jvmsrc.tasks
 
-import com.ak.gradle.jvmsrc.plugin.JvmSrcExtension
+import com.ak.jvmsrc.plugin.JvmSrcExtension
 import org.gradle.api.internal.project.DefaultProject
 import org.gradle.testfixtures.ProjectBuilder
 import spock.lang.Specification
+
 import static org.apache.maven.artifact.ant.shaded.FileUtils.deleteDirectory
 import static org.apache.maven.artifact.ant.shaded.FileUtils.fileExists
 
