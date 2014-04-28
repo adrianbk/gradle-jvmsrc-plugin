@@ -1,0 +1,20 @@
+apply plugin: 'groovy'
+
+repositories {
+//    mavenCentral()
+    maven { url 'http://localhost:8081/artifactory/repo' }
+
+}
+
+dependencies {
+    //Gradle uses groovy 1.8.6 for the buildSrc project so an earlier spock version is required
+    testCompile "org.spockframework:spock-core:0.7-groovy-1.8"
+    compile localGroovy()
+    compile gradleApi()
+
+    testCompile 'junit:junit:4.11'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.11'
+}
