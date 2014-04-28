@@ -1,8 +1,8 @@
 apply plugin: 'groovy'
 
 repositories {
-//    mavenCentral()
-    maven { url 'http://localhost:8081/artifactory/repo' }
+    mavenCentral()
+//    maven { url 'http://localhost:8081/artifactory/repo' }
 
 }
 
