@@ -12,13 +12,13 @@ The plugin inspects the existing language plugins applied to your project and cr
 
 Directories and packages are created with the maven convention e.g:
 
-src/main/resources
-src/main/java/<your package structure>
-src/main/groovy/<your package structure>
+- src/main/resources
+- src/main/java/<your package structure>
+- src/main/groovy/<your package structure>
 
-src/test/java/<your package structure>
-src/test/groovy/<your package structure>
-src/test/resources
+- src/test/java/<your package structure>
+- src/test/groovy/<your package structure>
+- src/test/resources
 
 The plugin becomes particularly useful for muti-project builds where several sub projects are created.
 
@@ -50,6 +50,7 @@ or
 subprojects{
     apply plugin: 'jvmsrc'
 }
+```
 
 
 - Apply one or more jvm plugin to your gradle project
@@ -57,6 +58,7 @@ subprojects{
 ```groovy
 apply plugin: 'java'
 apply plugin: 'groovy'
+
 ```
 
 - Configure the plugin in your projects build script
