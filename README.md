@@ -53,7 +53,7 @@ subprojects{
 ```
 
 
-- Apply one or more jvm plugin to your gradle project
+- Apply one or more jvm language plugins to your gradle project
 
 ```groovy
 apply plugin: 'java'
@@ -61,7 +61,7 @@ apply plugin: 'groovy'
 
 ```
 
-- Configure the plugin in your projects build script
+- Configure the base package name in your projects build script
 
 ```groovy
 
@@ -71,7 +71,7 @@ jvmsrc {
 
 ```
 
-- Execute the task
+- Execute the task to create directories
 
 ```groovy
 ./gradlew createJvmSrcDirs
