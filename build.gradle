@@ -19,17 +19,21 @@ dependencies {
 publishing {
     publications {
         mavenJava(MavenPublication) {
+            groupId 'com.ak'
+            artifactId 'gradle-jvm-src-plugin'
             from components.java
         }
     }
+
     repositories {
         maven {
-            name 'remoteReleaseRepository'
+            name 'bintray'
+
+            url "https://api.bintray.com/maven/adrianbkelly/maven/gradle-jvm-src-plugin"
             credentials {
-                username = 'admin'
-                password = 'password'
+                username = 'adrianbkelly'
+                password = project.hasProperty('bintray_key') ? project.getProperty('bintray_key') : ''
             }
-            url 'http://localhost:8081/artifactory/libs-snapshot-local'
         }
     }
 }
