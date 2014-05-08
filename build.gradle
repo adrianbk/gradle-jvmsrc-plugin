@@ -11,6 +11,7 @@ repositories {
 dependencies {
     //Gradle uses groovy 1.8.6 for the buildSrc project so an earlier spock version is required
     testCompile "org.spockframework:spock-core:0.7-groovy-1.8"
+    testCompile 'com.android.tools.build:gradle:0.10.+'
     compile localGroovy()
     compile gradleApi()
 }

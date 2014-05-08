@@ -6,6 +6,8 @@ import org.gradle.testfixtures.ProjectBuilder
 import spock.lang.Specification
 import spock.lang.Unroll
 
+import com.android.build.gradle.AppPlugin
+
 import static org.apache.maven.artifact.ant.shaded.FileUtils.deleteDirectory
 import static org.apache.maven.artifact.ant.shaded.FileUtils.fileExists
 
@@ -50,6 +52,7 @@ class CreateJvmSourceDirsSpec extends Specification {
   def "should not include keeps"(){
     given:
       testProject.apply plugin: 'java'
+      testProject.apply plugin: 'android'
 
       testProject.jvmsrc.packageName = 'org.ajar.gradle.plugin.develop'
       testProject.jvmsrc.includeKeep = included
