@@ -19,6 +19,10 @@ task sourceJar(type: Jar) {
     from sourceSets.main.allJava
 }
 
+ext{
+    artifactRepoBase = 'http://oss.jfrog.org/artifactory'
+}
+
 publishing {
     publications {
         mavenJava(MavenPublication) {
@@ -34,7 +38,8 @@ publishing {
     repositories {
         maven {
             name 'bintray'
-            url 'https://api.bintray.com/maven/adrianbkelly/maven/gradle-jvm-src-plugin'
+
+            url "${artifactRepoBase}/oss-${project.version.endsWith('-SNAPSHOT') ? 'snapshot' : 'release' }-local"
             credentials {
                 username = 'adrianbkelly'
                 password = project.hasProperty('bintray_key') ? project.getProperty('bintray_key') : ''

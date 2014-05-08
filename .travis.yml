@@ -1,3 +1,6 @@
 language: java
 jdk:
   - openjdk6
+
+script:
+  - TERM=dumb ./gradlew test

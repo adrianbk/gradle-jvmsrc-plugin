@@ -71,6 +71,14 @@ jvmsrc {
 
 ```
 
+- To prevent creating .gitkeep files
+
+```
+jvmsrc {
+    includeKeeps false
+}
+```
+
 - Execute the task to create directories
 
 ```groovy
