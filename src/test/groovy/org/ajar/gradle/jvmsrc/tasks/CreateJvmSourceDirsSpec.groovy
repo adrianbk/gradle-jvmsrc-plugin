@@ -49,10 +49,9 @@ class CreateJvmSourceDirsSpec extends Specification {
   }
 
   @Unroll
-  def "should not include keeps"(){
+  def "should not include keeps"() {
     given:
       testProject.apply plugin: 'java'
-      testProject.apply plugin: 'android'
 
       testProject.jvmsrc.packageName = 'org.ajar.gradle.plugin.develop'
       testProject.jvmsrc.includeKeep = included
@@ -68,12 +67,10 @@ class CreateJvmSourceDirsSpec extends Specification {
       included << [true, false]
   }
 
-
   private void assertJvmSourceSet(String lang) {
     assert fileExists(testProject.rootDir.path + "/src/main/$lang/org/ajar/gradle/plugin/develop")
     assert fileExists(testProject.rootDir.path + "/src/test/$lang/org/ajar/gradle/plugin/develop")
   }
-
 
   private void assertKeep(String lang) {
     assert fileExists(testProject.rootDir.path + "/src/main/$lang/org/ajar/gradle/plugin/develop/.gitkeep")
@@ -103,4 +100,20 @@ class CreateJvmSourceDirsSpec extends Specification {
       task.packageToDirectoryPath.call('org.ajar.gradle.plugin') == "org${sep}ajar${sep}gradle${sep}plugin"
 
   }
+
+  def "should not create keep files on directory with contents"() {
+    given:
+      File dir = new File(testProject.rootDir.path + "/nokeeps")
+      dir.mkdirs()
+      new File(dir.getAbsolutePath() + '/someExistingFile.txt').createNewFile()
+      testProject.jvmsrc.includeKeep == true
+
+    when:
+      task.maybeCreateKeep(dir.getAbsolutePath())
+
+    then:
+      dir.list().size() == 1
+
+  }
+
 }

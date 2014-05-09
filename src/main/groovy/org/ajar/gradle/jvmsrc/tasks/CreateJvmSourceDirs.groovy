@@ -13,7 +13,7 @@ class CreateJvmSourceDirs extends DefaultTask {
     String packageDir = packageToDirectoryPath.call(resolvePackageName.call())
     logger.info "Creating source structure for project: $project.name with package directory: ${packageDir}"
 
-    project.sourceSets*.allSource.srcDirTrees.flatten().dir.each { File dir ->
+    allSourceDirs().dir.each { File dir ->
 
       logger.info("Creating project directory: ${dir}")
       dir.mkdirs()
@@ -31,8 +31,10 @@ class CreateJvmSourceDirs extends DefaultTask {
 
   def maybeCreateKeep(String dir) {
     if (project.jvmsrc.includeKeep == true) {
-      logger.info("Creating project directory: ${dir}")
-      new File(dir + '/.gitkeep').createNewFile()
+      File container = new File(dir)
+      if (!container.list()) {
+        new File(dir + '/.gitkeep').createNewFile()
+      }
     }
   }
 
@@ -44,6 +46,10 @@ class CreateJvmSourceDirs extends DefaultTask {
 
   def packageToDirectoryPath = { String packageName ->
     packageName.replaceAll('\\.', File.separator)
+  }
+
+  def allSourceDirs = {
+    project.jvmsrc.allSourceDirs(project)
   }
 
 }

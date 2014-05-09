@@ -10,6 +10,8 @@ gradle-jvmsrc-plugin
 A gradle plugin which provides a task to create the default source, test and resource package directories for JVM projects (java, groovy, scala, etc.)
 The plugin inspects the existing language plugins applied to your project and creates the appropriate directory and package structures along with adding .gitkeep to each directory.
 
+Also supports android source sets
+
 Directories and packages are created with the maven convention e.g:
 
 - src/main/resources
@@ -32,11 +34,20 @@ buildscript {
         maven { url 'http://dl.bintray.com/adrianbkelly/maven'}
     }
     dependencies {
-        classpath 'org.ajar.gradle:gradle-jvm-src-plugin:0.1'
+        classpath 'org.ajar.gradle:gradle-jvm-src-plugin:0.2'
     }
 }
 
 ```
+
+#### Snapshot repo:
+
+http://oss.jfrog.org/artifactory/oss-snapshot-local
+```
+classpath(group: 'org.ajar.gradle', name: 'gradle-jvm-src-plugin', version: '0.2-SNAPSHOT')
+
+```
+
 
 ### Usage
  - Apply the plugin to your project or sub projects which adds a task `createJvmSrcDirs` to your project/subprojects
