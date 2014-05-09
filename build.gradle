@@ -3,61 +3,63 @@ apply plugin: 'maven-publish'
 
 
 repositories {
-    mavenCentral()
-    maven { url 'http://localhost:8081/artifactory/repo' }
+  mavenCentral()
+//    maven { url 'http://localhost:8081/artifactory/repo' }
 
 }
 
 dependencies {
-    //Gradle uses groovy 1.8.6 for the buildSrc project so an earlier spock version is required
-    testCompile "org.spockframework:spock-core:0.7-groovy-1.8"
-    testCompile 'com.android.tools.build:gradle:0.10.+'
-    compile localGroovy()
-    compile gradleApi()
+  //Gradle uses groovy 1.8.6 for the buildSrc project so an earlier spock version is required
+  testCompile "org.spockframework:spock-core:0.7-groovy-1.8"
+  testCompile 'com.android.tools.build:gradle:0.10.+'
+  compile localGroovy()
+  compile gradleApi()
 }
 
 task sourceJar(type: Jar) {
-    from sourceSets.main.allJava
+  from sourceSets.main.allJava
 }
 
-ext{
-    artifactRepoBase = 'http://oss.jfrog.org/artifactory'
+ext {
+  artifactRepoBase = 'http://oss.jfrog.org/artifactory'
 }
 
 publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            artifactId 'gradle-jvm-src-plugin'
-            from components.java
+  publications {
+    mavenJava(MavenPublication) {
+      artifactId 'gradle-jvm-src-plugin'
+      from components.java
 
-            artifact sourceJar {
-                classifier "sources"
-            }
-        }
+      artifact sourceJar {
+        classifier "sources"
+      }
+    }
+  }
+
+  repositories {
+    maven {
+      name 'jcenter'
+
+      url "${artifactRepoBase}/oss-${project.version.endsWith('-SNAPSHOT') ? 'snapshot' : 'release'}-local"
+      credentials {
+        username = 'adrianbkelly'
+        password = project.hasProperty('bintray_key') ? project.getProperty('bintray_key') : ''
+      }
     }
 
-    repositories {
-        maven {
-            name 'bintray'
-
-            url "${artifactRepoBase}/oss-${project.version.endsWith('-SNAPSHOT') ? 'snapshot' : 'release' }-local"
-            credentials {
-                username = 'adrianbkelly'
-                password = project.hasProperty('bintray_key') ? project.getProperty('bintray_key') : ''
-            }
+    if (!project.version.endsWith('-SNAPSHOT')) {
+      maven {
+        name 'bintray'
+        url "https://api.bintray.com/maven/adrianbkelly/maven/gradle-jvm-src-plugin"
+        credentials {
+          username = 'adrianbkelly'
+          password = project.hasProperty('bintray_key') ? project.getProperty('bintray_key') : ''
         }
-
-//        maven {
-//            name 'localArtifactory'
-//            credentials {
-//                username = 'admin'
-//                password = 'password'
-//            }
-//            url 'http://localhost:8081/artifactory/libs-release-local'
-//        }
+      }
     }
+  }
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '1.11'
+  gradleVersion = '1.11'
 }
