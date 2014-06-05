@@ -22,12 +22,16 @@ task sourceJar(type: Jar) {
 
 ext {
   artifactRepoBase = 'http://oss.jfrog.org/artifactory'
+  artifactLabel = 'gradle-jvm-src-plugin'
 }
 
 publishing {
   publications {
     mavenJava(MavenPublication) {
-      artifactId 'gradle-jvm-src-plugin'
+      artifactId artifactLabel
+      groupId 'org.ajar.gradle'
+      artifactId "$artifactLabel"
+
       from components.java
 
       artifact sourceJar {
@@ -36,11 +40,12 @@ publishing {
     }
   }
 
+
   repositories {
     maven {
       name 'jcenter'
-
       url "${artifactRepoBase}/oss-${project.version.endsWith('-SNAPSHOT') ? 'snapshot' : 'release'}-local"
+
       credentials {
         username = 'adrianbkelly'
         password = project.hasProperty('bintray_key') ? project.getProperty('bintray_key') : ''
@@ -50,7 +55,7 @@ publishing {
     if (!project.version.endsWith('-SNAPSHOT')) {
       maven {
         name 'bintray'
-        url "https://api.bintray.com/maven/adrianbkelly/maven/gradle-jvm-src-plugin"
+        url "https://api.bintray.com/maven/adrianbkelly/maven/${artifactLabel}"
         credentials {
           username = 'adrianbkelly'
           password = project.hasProperty('bintray_key') ? project.getProperty('bintray_key') : ''

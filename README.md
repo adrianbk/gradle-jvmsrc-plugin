@@ -5,19 +5,19 @@
 gradle-jvmsrc-plugin
 ====================
 
-
 ### Description
-A gradle plugin which provides a task to create the default source, test and resource package directories for JVM projects (java, groovy, scala, etc.)
-The plugin inspects the existing language plugins applied to your project and creates the appropriate directory and package structures along with adding .gitkeep to each directory.
+A gradle plugin which provides a task to create the default source, test and resource package directories for JVM 
+projects (java, groovy, scala, android etc.)
 
-Also supports android source sets
+The plugin inspects the existing language plugins applied to your project and creates the appropriate directory and package structures along with optionally adding .gitkeep files to each directory.
 
-Directories and packages are created with the maven convention e.g:
+Also supports android source sets and flavours
+
+Directories and packages are created with the conventional structure e.g:
 
 - src/main/resources
 - src/main/java/<your package structure>
 - src/main/groovy/<your package structure>
-
 - src/test/java/<your package structure>
 - src/test/groovy/<your package structure>
 - src/test/resources
@@ -29,12 +29,13 @@ The plugin becomes particularly useful for muti-project builds where several sub
 Add the plugin repo and classpath dependency to your build script.
 
 ```groovy
+
 buildscript {
     repositories {
-        maven { url 'http://dl.bintray.com/adrianbkelly/maven'}
+        jcenter()
     }
     dependencies {
-        classpath 'org.ajar.gradle:gradle-jvm-src-plugin:0.2'
+        classpath "org.ajar.gradle:gradle-jvm-src-plugin:0.3"
     }
 }
 
@@ -44,13 +45,13 @@ buildscript {
 
 http://oss.jfrog.org/artifactory/oss-snapshot-local
 ```
-classpath(group: 'org.ajar.gradle', name: 'gradle-jvm-src-plugin', version: '0.2-SNAPSHOT')
+classpath(group: 'org.ajar.gradle', name: 'gradle-jvm-src-plugin', version: '0.3-SNAPSHOT')
 
 ```
 
 
 ### Usage
- - Apply the plugin to your project or sub projects which adds a task `createJvmSrcDirs` to your project/subprojects
+ - Apply the plugin to your project or sub projects which adds the task `createJvmSrcDirs` to your project/subprojects
 
 ```groovy
 
@@ -82,7 +83,7 @@ jvmsrc {
 
 ```
 
-- To prevent creating .gitkeep files
+- Disable .gitkeep file creation
 
 ```
 jvmsrc {
@@ -103,7 +104,6 @@ jvmsrc {
 - Apply the language plugins to /parent-project/my-module/build.gradle e.g. `apply plugin: 'java'`
 - Add the new module to settings.gradle (include "my-module")
 - Create the directories: `./gradlew :my-module:createJvmSrcDirs`
-
 
 
 
