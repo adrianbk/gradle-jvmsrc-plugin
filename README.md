@@ -37,7 +37,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "org.ajar.gradle:gradle-jvm-src-plugin:0.3"
+        classpath "org.ajar.gradle:gradle-jvm-src-plugin:0.4"
     }
 }
 
