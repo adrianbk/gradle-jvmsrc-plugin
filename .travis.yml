@@ -8,7 +8,7 @@ script:
 
 after_success:
   - TERM=dumb ./gradlew test -PandroidToolsVersion=0.10.+
-  - '[[ $TRAVIS_BRANCH == "master" ]] && [[ $TRAVIS_PULL_REQUEST == "false" ]] && TERM=dumb./gradlew publish -Pbintray_key=$bintray_key'
+  - '[[ $TRAVIS_BRANCH == "master" ]] && [[ $TRAVIS_PULL_REQUEST == "false" ]] && TERM=dumb ./gradlew publish -Pbintray_key=$bintray_key'
 
 env:
   global:
