@@ -11,8 +11,6 @@ projects (java, groovy, scala, android etc.)
 
 The plugin inspects the existing language plugins applied to your project and creates the appropriate directory and package structures along with optionally adding .gitkeep files to each directory.
 
-Also supports android source sets and flavours
-
 Directories and packages are created with the conventional structure e.g:
 
 - src/main/resources
@@ -23,6 +21,10 @@ Directories and packages are created with the conventional structure e.g:
 - src/test/resources
 
 The plugin becomes particularly useful for muti-project builds where several sub projects are created.
+
+#### Android
+- Supports android variants and flavours
+- Requires versions 0.10+ or 0.11+ of androids gradle build tools `com.android.tools.build:gradle`
 
 ### Dependencies
 
