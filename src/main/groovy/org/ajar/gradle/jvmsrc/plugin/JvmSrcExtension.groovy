@@ -1,12 +1,14 @@
 package org.ajar.gradle.jvmsrc.plugin
 
+import org.ajar.gradle.jvmsrc.providers.AndroidSourceProvider
+import org.ajar.gradle.jvmsrc.providers.SourceProvider
 import org.gradle.api.Project
 
 class JvmSrcExtension {
 
   public static final String DEFAULT_PACKAGE = "com.nopackage"
 
-  List additionalSourceContainers = ['android']
+  Map additionalSourceContainers = ['android' : new AndroidSourceProvider()]
   String packageName = DEFAULT_PACKAGE
   Boolean includeKeep = true
 
@@ -18,11 +20,15 @@ class JvmSrcExtension {
     this.includeKeep = includeKeep
   }
 
+  void setAdditionalSourceContainers(Map additionalSourceContainers) {
+    this.additionalSourceContainers.putAll(additionalSourceContainers)
+  }
+
   def allSourceDirs(Project p) {
     def dirs = allSource(p) ?: []
-    additionalSourceContainers.each { String srcContainer ->
+    additionalSourceContainers.each { String srcContainer, SourceProvider provider ->
       if (p.hasProperty(srcContainer)) {
-        dirs += allSource(p."$srcContainer")
+        dirs += provider.getSources(p."$srcContainer")
       }
     }
     dirs

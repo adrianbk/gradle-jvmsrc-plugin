@@ -1,8 +1,6 @@
 package org.ajar.gradle.jvmsrc.tasks
 
-import com.android.builder.DefaultProductFlavor
 import org.ajar.gradle.jvmsrc.plugin.JvmSrcExtension
-import org.gradle.api.Action
 import org.gradle.api.internal.project.DefaultProject
 import org.gradle.testfixtures.ProjectBuilder
 import spock.lang.Specification
@@ -26,7 +24,7 @@ class CreateJvmSourceDirsAndroidSpec extends Specification {
 
   def "Should create a new android project with source"() {
     given:
-      testProject.apply plugin: 'android'
+      testProject.apply plugin: com.android.build.gradle.AppPlugin
 
     when:
       task.createJVMProjectSource()

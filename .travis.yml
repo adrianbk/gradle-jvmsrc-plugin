@@ -3,4 +3,13 @@ jdk:
   - openjdk6
 
 script:
-  - TERM=dumb ./gradlew test
+  - TERM=dumb ./gradlew clean test
+  - TERM=dumb ./gradlew test -PandroidToolsVersion=0.10.+
+
+after_success:
+  - TERM=dumb ./gradlew test -PandroidToolsVersion=0.10.+
+  - '[[ $TRAVIS_BRANCH == "master" ]] && [[ $TRAVIS_PULL_REQUEST == "false" ]] && TERM=dumb./gradlew publish -Pbintray_key=$bintray_key'
+
+env:
+  global:
+  - secure: Hv/6j55eVWDkfGYArKjML1xQ0wU6TVkr3d7Jshc1D19XlrYRJ4raOKa31MduwPgw5B1hVAY+diNkbqi+WfRmza31qT9iSoglhKJZq8nCganXN2pr2v/yOEYjbJdkm1SsqCuCJW7QsqsVLo5GsWWtZ1yUIsy3NQPZP59B2LOv8S0=

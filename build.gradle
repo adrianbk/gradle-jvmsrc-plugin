@@ -1,17 +1,21 @@
 apply plugin: 'groovy'
 apply plugin: 'maven-publish'
 
+ext {
+  artifactRepoBase = 'http://oss.jfrog.org/artifactory'
+  artifactLabel = 'gradle-jvm-src-plugin'
+  androidToolsVersion = project.hasProperty('androidToolsVersion') ? project.property('androidToolsVersion') : '0.11.+'
+}
 
 repositories {
   mavenCentral()
-//    maven { url 'http://localhost:8081/artifactory/repo' }
-
 }
+
 
 dependencies {
   //Gradle uses groovy 1.8.6 for the buildSrc project so an earlier spock version is required
   testCompile "org.spockframework:spock-core:0.7-groovy-1.8"
-  testCompile 'com.android.tools.build:gradle:0.10.+'
+  testCompile "com.android.tools.build:gradle:$androidToolsVersion"
   compile localGroovy()
   compile gradleApi()
 }
@@ -20,10 +24,7 @@ task sourceJar(type: Jar) {
   from sourceSets.main.allJava
 }
 
-ext {
-  artifactRepoBase = 'http://oss.jfrog.org/artifactory'
-  artifactLabel = 'gradle-jvm-src-plugin'
-}
+
 
 publishing {
   publications {
