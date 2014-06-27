@@ -37,7 +37,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "org.ajar.gradle:gradle-jvm-src-plugin:0.4"
+        classpath "org.ajar.gradle:gradle-jvm-src-plugin:0.5"
     }
 }
 
@@ -47,7 +47,7 @@ buildscript {
 
 http://oss.jfrog.org/artifactory/oss-snapshot-local
 ```
-classpath(group: 'org.ajar.gradle', name: 'gradle-jvm-src-plugin', version: '0.3-SNAPSHOT')
+classpath(group: 'org.ajar.gradle', name: 'gradle-jvm-src-plugin', version: '0.5-SNAPSHOT')
 
 ```
 
