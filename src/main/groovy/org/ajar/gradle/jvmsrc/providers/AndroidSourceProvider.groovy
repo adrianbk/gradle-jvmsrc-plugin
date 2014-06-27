@@ -8,7 +8,7 @@ class AndroidSourceProvider implements SourceProvider {
     List srcDirs = []
     container.sourceSets?.each {
       def javaDirs = it.getJavaDirectories()
-      def resourceDirs = it.getResourcesDirectories()
+      def resourceDirs = it.getResDirectories()
       srcDirs += javaDirs
       srcDirs += resourceDirs
     }

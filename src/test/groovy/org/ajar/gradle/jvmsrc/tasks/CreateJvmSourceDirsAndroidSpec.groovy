@@ -2,6 +2,7 @@ package org.ajar.gradle.jvmsrc.tasks
 
 import org.ajar.gradle.jvmsrc.plugin.JvmSrcExtension
 import org.gradle.api.internal.project.DefaultProject
+import org.gradle.api.publish.maven.plugins.MavenPublishPlugin
 import org.gradle.testfixtures.ProjectBuilder
 import spock.lang.Specification
 
@@ -22,21 +23,34 @@ class CreateJvmSourceDirsAndroidSpec extends Specification {
     deleteDirectory(testProject.rootDir.path + '/src')
   }
 
-  def "Should create a new android project with source"() {
+  def "Should create android source sets with variants"() {
     given:
       testProject.apply plugin: com.android.build.gradle.AppPlugin
 
     when:
+      testProject.android {
+        productFlavors {
+          free {}
+          paid {}
+        }
+      }
+
       task.createJVMProjectSource()
 
     then:
-      fileExists(testProject.rootDir.path + '/src/androidTest/resources')
-      fileExists(testProject.rootDir.path + '/src/androidTest/java')
-      fileExists(testProject.rootDir.path + '/src/debug/resources')
-      fileExists(testProject.rootDir.path + '/src/debug/java')
-      fileExists(testProject.rootDir.path + '/src/main/resources')
-      fileExists(testProject.rootDir.path + '/src/main/java')
-      fileExists(testProject.rootDir.path + '/src/release/resources')
-      fileExists(testProject.rootDir.path + '/src/release/java')
+      assert assertVariantSourceSet('androidTest')
+      assert assertVariantSourceSet('debug')
+      assert assertVariantSourceSet('main')
+      assert assertVariantSourceSet('release')
+
+      assert assertVariantSourceSet('paid')
+      assert assertVariantSourceSet('androidTestPaid')
+
+      assert assertVariantSourceSet('free')
+      assert assertVariantSourceSet('androidTestFree')
+  }
+
+  def assertVariantSourceSet = { String variant ->
+    return fileExists(testProject.rootDir.path + "/src/$variant/res") && fileExists(testProject.rootDir.path + "/src/$variant/java")
   }
 }
