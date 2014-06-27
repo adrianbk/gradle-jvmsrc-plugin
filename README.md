@@ -47,7 +47,7 @@ buildscript {
 
 http://oss.jfrog.org/artifactory/oss-snapshot-local
 ```
-classpath(group: 'org.ajar.gradle', name: 'gradle-jvm-src-plugin', version: '0.5-SNAPSHOT')
+classpath(group: 'org.ajar.gradle', name: 'gradle-jvm-src-plugin', version: '0.6-SNAPSHOT')
 
 ```
 
