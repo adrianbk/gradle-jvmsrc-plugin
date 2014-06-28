@@ -37,7 +37,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "org.ajar.gradle:gradle-jvm-src-plugin:0.5"
+        classpath "com.github.adrianbk:gradle-jvmsrc-plugin:0.6"
     }
 }
 
@@ -47,7 +47,7 @@ buildscript {
 
 http://oss.jfrog.org/artifactory/oss-snapshot-local
 ```
-classpath(group: 'org.ajar.gradle', name: 'gradle-jvm-src-plugin', version: '0.6-SNAPSHOT')
+classpath(group: 'com.github.adrianbk', name: 'gradle-jvmsrc-plugin', version: '0.7-SNAPSHOT')
 
 ```
 
@@ -57,12 +57,12 @@ classpath(group: 'org.ajar.gradle', name: 'gradle-jvm-src-plugin', version: '0.6
 
 ```groovy
 
-apply plugin: 'jvmsrc'
+    apply plugin: 'com.github.adrianbk.jvmsrc'
 
 or
 
 subprojects{
-    apply plugin: 'jvmsrc'
+    apply plugin: 'com.github.adrianbk.jvmsrc'
 }
 ```
 

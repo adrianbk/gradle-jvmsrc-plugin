@@ -3,7 +3,7 @@ apply plugin: 'maven-publish'
 
 ext {
   artifactRepoBase = 'http://oss.jfrog.org/artifactory'
-  artifactLabel = 'gradle-jvm-src-plugin'
+  artifactLabel = 'gradle-jvmsrc-plugin'
   androidToolsVersion = project.hasProperty('androidToolsVersion') ? project.property('androidToolsVersion') : '0.11.+'
 }
 
@@ -11,6 +11,7 @@ repositories {
   mavenCentral()
 }
 
+group = 'com.github.adrianbk'
 
 dependencies {
   //Gradle uses groovy 1.8.6 for the buildSrc project so an earlier spock version is required
@@ -28,7 +29,7 @@ publishing {
   publications {
     mavenJava(MavenPublication) {
       artifactId artifactLabel
-      groupId 'org.ajar.gradle'
+      groupId project.group
       artifactId "$artifactLabel"
 
       from components.java
