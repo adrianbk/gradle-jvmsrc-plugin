@@ -1,7 +1,7 @@
-package org.ajar.gradle.jvmsrc.plugin
+package com.github.adrianbk.jvmsrc.plugin
 
-import org.ajar.gradle.jvmsrc.providers.AndroidSourceProvider
-import org.ajar.gradle.jvmsrc.providers.SourceProvider
+import com.github.adrianbk.jvmsrc.providers.AndroidSourceProvider
+import com.github.adrianbk.jvmsrc.providers.SourceProvider
 import org.gradle.api.Project
 
 class JvmSrcExtension {

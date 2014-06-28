@@ -108,6 +108,7 @@ jvmsrc {
 - Create the directories: `./gradlew :my-module:createJvmSrcDirs`
 
 
-
+### License
+[Apache-2.0] (http://www.apache.org/licenses/LICENSE-2.0.html)
 
 

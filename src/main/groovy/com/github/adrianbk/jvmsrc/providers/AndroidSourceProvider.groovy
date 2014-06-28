@@ -1,4 +1,4 @@
-package org.ajar.gradle.jvmsrc.providers
+package com.github.adrianbk.jvmsrc.providers
 
 import org.gradle.api.internal.file.collections.DirectoryFileTree
 

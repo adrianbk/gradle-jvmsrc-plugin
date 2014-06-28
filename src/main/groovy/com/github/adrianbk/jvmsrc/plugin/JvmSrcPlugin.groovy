@@ -1,6 +1,6 @@
-package org.ajar.gradle.jvmsrc.plugin
+package com.github.adrianbk.jvmsrc.plugin
 
-import org.ajar.gradle.jvmsrc.tasks.CreateJvmSourceDirs
+import com.github.adrianbk.jvmsrc.tasks.CreateJvmSourceDirs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 

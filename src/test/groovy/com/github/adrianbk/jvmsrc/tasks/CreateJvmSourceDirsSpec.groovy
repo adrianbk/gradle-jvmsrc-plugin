@@ -1,12 +1,10 @@
-package org.ajar.gradle.jvmsrc.tasks
+package com.github.adrianbk.jvmsrc.tasks
 
-import org.ajar.gradle.jvmsrc.plugin.JvmSrcExtension
+import com.github.adrianbk.jvmsrc.plugin.JvmSrcExtension
 import org.gradle.api.internal.project.DefaultProject
 import org.gradle.testfixtures.ProjectBuilder
 import spock.lang.Specification
 import spock.lang.Unroll
-
-import com.android.build.gradle.AppPlugin
 
 import static org.apache.maven.artifact.ant.shaded.FileUtils.deleteDirectory
 import static org.apache.maven.artifact.ant.shaded.FileUtils.fileExists
