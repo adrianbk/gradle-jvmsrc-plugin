@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/adrianbk/gradle-jvmsrc-plugin.png?branch=master)](https://travis-ci.org/adrianbk/gradle-jvmsrc-plugin)
 
-[ ![Download](https://api.bintray.com/packages/adrianbkelly/maven/gradle-jvm-src-plugin/images/download.png) ](https://bintray.com/adrianbkelly/maven/gradle-jvm-src-plugin/_latestVersion)
+ [ ![Download](https://api.bintray.com/packages/adrianbkelly/maven/gradle-jvmsrc-plugin/images/download.png) ](https://bintray.com/adrianbkelly/maven/gradle-jvmsrc-plugin/_latestVersion)
 
 gradle-jvmsrc-plugin
 ====================
