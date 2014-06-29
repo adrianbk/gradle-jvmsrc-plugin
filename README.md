@@ -37,7 +37,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "com.github.adrianbk:gradle-jvmsrc-plugin:0.6"
+        classpath "com.github.adrianbk:gradle-jvmsrc-plugin:0.6.1"
     }
 }
 
