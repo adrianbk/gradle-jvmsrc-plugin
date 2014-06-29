@@ -1,14 +1,15 @@
 package com.github.adrianbk.jvmsrc.plugin
 
 import com.github.adrianbk.jvmsrc.providers.AndroidSourceProvider
+import com.github.adrianbk.jvmsrc.providers.DefaultSourceProvider
 import com.github.adrianbk.jvmsrc.providers.SourceProvider
 import org.gradle.api.Project
 
 class JvmSrcExtension {
 
   public static final String DEFAULT_PACKAGE = "com.nopackage"
-  List nonPackageDirs = ['resources', 'res']
-  Map additionalSourceContainers = ['android' : new AndroidSourceProvider()]
+  SourceProvider defaultSourceProvider = new DefaultSourceProvider()
+  Map additionalSourceContainers = ['android': new AndroidSourceProvider()]
   String packageName = DEFAULT_PACKAGE
   Boolean includeKeep = true
 
@@ -25,7 +26,7 @@ class JvmSrcExtension {
   }
 
   def allSourceDirs(Project p) {
-    def dirs = allSource(p) ?: []
+    def dirs = defaultSourceProvider.getSources(p)
     additionalSourceContainers.each { String srcContainer, SourceProvider provider ->
       if (p.hasProperty(srcContainer)) {
         dirs += provider.getSources(p."$srcContainer")
@@ -34,8 +35,13 @@ class JvmSrcExtension {
     dirs
   }
 
-  def allSource(obj){
-    obj.sourceSets*.allSource.srcDirTrees.flatten()
+  def allResourceDirs(Project p) {
+    def dirs = defaultSourceProvider.getResources(p)
+    additionalSourceContainers.each { String srcContainer, SourceProvider provider ->
+      if (p.hasProperty(srcContainer)) {
+        dirs += provider.getResources(p."$srcContainer")
+      }
+    }
+    dirs
   }
-
 }

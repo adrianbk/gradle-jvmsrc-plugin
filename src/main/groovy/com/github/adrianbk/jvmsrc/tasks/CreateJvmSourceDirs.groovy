@@ -8,25 +8,33 @@ class CreateJvmSourceDirs extends DefaultTask {
   String description = 'Creates a JVM based project structure based on the plugins applied to the project.'
   String group = "build setup"
 
+  def allSourceDirs = {
+    project.jvmsrc.allSourceDirs(project)
+  }
+
+  def allResourceDirs = {
+    project.jvmsrc.allResourceDirs(project)
+  }
+
   @TaskAction
   def createJVMProjectSource() {
     String packageDir = packageToDirectoryPath.call(resolvePackageName.call())
     logger.info "Creating source structure for project: $project.name with package directory: ${packageDir}"
 
     allSourceDirs().dir.each { File dir ->
-
-      logger.info("Creating project directory: ${dir}")
+      logger.info("Creating source directory: ${dir}")
       dir.mkdirs()
+      String directoryPath = dir.absolutePath + File.separator + packageDir
+      logger.info "Creating packge directories: ${directoryPath}"
+      def pFile = new File(directoryPath)
+      pFile.mkdirs()
+      maybeCreateKeep pFile.getAbsolutePath()
+    }
 
-      if (!project.jvmsrc.nonPackageDirs.contains(dir.name)) {
-        String directoryPath = dir.absolutePath + File.separator + packageDir
-        logger.info "Creating packge directories: ${directoryPath}"
-        File file = new File(directoryPath)
-        file.mkdirs()
-        maybeCreateKeep file.getAbsolutePath()
-      } else {
-        maybeCreateKeep dir.getAbsolutePath()
-      }
+    allResourceDirs().dir.each { File dir ->
+      logger.info("Creating resource directory: ${dir}")
+      dir.mkdirs()
+      maybeCreateKeep dir.getAbsolutePath()
     }
   }
 
@@ -48,9 +56,4 @@ class CreateJvmSourceDirs extends DefaultTask {
   def packageToDirectoryPath = { String packageName ->
     packageName.replaceAll('\\.', File.separator)
   }
-
-  def allSourceDirs = {
-    project.jvmsrc.allSourceDirs(project)
-  }
-
 }

@@ -19,7 +19,7 @@ class CreateJvmSourceDirsAndroidSpec extends Specification {
   }
 
   def cleanup() {
-//    deleteDirectory(testProject.rootDir.path + '/src')
+    deleteDirectory(testProject.rootDir.path + '/src')
   }
 
   def "Should create android source sets with variants"() {
