@@ -19,7 +19,7 @@ class CreateJvmSourceDirsAndroidSpec extends Specification {
   }
 
   def cleanup() {
-    deleteDirectory(testProject.rootDir.path + '/src')
+//    deleteDirectory(testProject.rootDir.path + '/src')
   }
 
   def "Should create android source sets with variants"() {
@@ -50,6 +50,7 @@ class CreateJvmSourceDirsAndroidSpec extends Specification {
   }
 
   def assertVariantSourceSet = { String variant ->
-    return fileExists(testProject.rootDir.path + "/src/$variant/res") && fileExists(testProject.rootDir.path + "/src/$variant/java")
+    fileExists(testProject.rootDir.path + "/src/$variant/java") &&
+            fileExists(testProject.rootDir.path + "/src/$variant/res")
   }
 }

@@ -18,8 +18,9 @@ class CreateJvmSourceDirs extends DefaultTask {
       logger.info("Creating project directory: ${dir}")
       dir.mkdirs()
 
-      if (dir.name != 'resources') {
+      if (!project.jvmsrc.nonPackageDirs.contains(dir.name)) {
         String directoryPath = dir.absolutePath + File.separator + packageDir
+        logger.info "Creating packge directories: ${directoryPath}"
         File file = new File(directoryPath)
         file.mkdirs()
         maybeCreateKeep file.getAbsolutePath()

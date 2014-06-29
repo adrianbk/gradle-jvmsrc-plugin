@@ -7,7 +7,7 @@ import org.gradle.api.Project
 class JvmSrcExtension {
 
   public static final String DEFAULT_PACKAGE = "com.nopackage"
-
+  List nonPackageDirs = ['resources', 'res']
   Map additionalSourceContainers = ['android' : new AndroidSourceProvider()]
   String packageName = DEFAULT_PACKAGE
   Boolean includeKeep = true
