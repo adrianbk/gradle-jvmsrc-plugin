@@ -89,7 +89,7 @@ jvmsrc {
 
 ```
 jvmsrc {
-    includeKeeps false
+    includeKeep false
 }
 ```
 
